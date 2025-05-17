@@ -1,0 +1,85 @@
+<!-- HOME -->
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('assets/images/hero_1.jpg');" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">Sign Up/Login</h1>
+        <div class="custom-breadcrumbs">
+          <a href="#">Home</a> <span class="mx-2 slash">/</span>
+          <span class="text-white"><strong>Log In</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mb-5">
+        <h2 class="mb-4">Sign Up To JobBoard</h2>
+        <form action="#" class="p-4 border rounded">
+
+          <div class="row form-group">
+            <div class="col-md-12 mb-3 mb-md-0">
+              <label class="text-black" >Email <span class="text-danger">* </span></label>
+              <input type="email"  class="form-control" placeholder="Email address" #email="ngModel" required [(ngModel)]="register.username" name="username">
+              @if (email.errors?.['required'] && email.touched){
+                  <span class="text-danger"> This is required</span>
+              }
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-12 mb-3 mb-md-0">
+              <label class="text-black" >Password</label>
+              <input type="password"  class="form-control" #pass="ngModel" minlength="8" placeholder="Password" [(ngModel)]="register.password" name="password">
+              <span *ngIf="pass.errors?.['require']" class="text-danger"> This is required</span>
+              <span *ngIf="pass.errors?.['minlength']" class="text-danger"> Password must min 8 char</span>
+            </div>
+          </div>
+          <div class="row form-group mb-4">
+            <div class="col-md-12 mb-3 mb-md-0">
+              <label class="text-black" >Re-Type Password</label>
+              <input type="password"  class="form-control" placeholder="Re-type Password" #rePass="ngModel" required minlength="8" [(ngModel)]="register.rePassword" name="rePassword">
+              <span *ngIf="rePass.errors?.['required'] && rePass.touched" class="text-danger"> This is required</span>
+              <span *ngIf="rePass.errors?.['minlength'] && rePass.touched" class="text-danger"> Password must min 8 char</span>
+              <span *ngIf="!isMatchPass() && rePass.touched" class="text-danger"> Re-Password not match</span>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-12">
+              <input type="button" value="Sign Up" class="btn px-4 btn-primary text-white" (click)="doRegister()">
+            </div>
+          </div>
+            <span class="text-center" [ngClass]="{'text-success': messageTypeRegister === 'success', 'text-danger': messageTypeRegister === 'error'}">{{messageRegister}}</span>
+        </form>
+      </div>
+      <div class="col-lg-6">
+        <h2 class="mb-4">Log In To JobBoard</h2>
+        <form action="#" class="p-4 border rounded">
+
+          <div class="row form-group">
+            <div class="col-md-12 mb-3 mb-md-0">
+              <label class="text-black" >Email</label>
+              <input type="text"  class="form-control" placeholder="Email address" [(ngModel)]="loginObj.username" name="username">
+            </div>
+          </div>
+          <div class="row form-group mb-4">
+            <div class="col-md-12 mb-3 mb-md-0">
+              <label class="text-black" >Password</label>
+              <input type="password"  class="form-control" placeholder="Password" [(ngModel)]="loginObj.password" name="password">
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-12">
+              <input type="button" value="Log In" class="btn px-4 btn-primary text-white" (click)="doLogin()">
+            </div>
+          </div>
+          <span class="text-center justify-content-center align-items-center align-self-center" [ngClass]="{'text-success': messageTypeLogin === 'success', 'text-danger': messageTypeLogin === 'error'}">{{messageLogin}}</span>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
