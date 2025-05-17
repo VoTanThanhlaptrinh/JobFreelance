@@ -5,7 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4acd3eab-80a5-4742-b280-0bf5770febdc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/JobFreelanceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/api/AccountAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/api/JobAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/configuration/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/filter/JwtFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/object/CV.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/object/Job.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/object/Response.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/object/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/object/Token.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/object/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/object/dto/CVDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/object/dto/JobDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/object/dto/LoginDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/object/dto/RegisterDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/repositories/CVRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/repositories/JobRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/repositories/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/repositories/TokenRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/repositories/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/service/JobService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/service/JwtService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/service/impl/JobServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/service/impl/JwtServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/service/impl/UserRepositoryDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/job-freelance-ui/src/assets/fonts/icomoon/fonts/icomoon.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance/src/main/java/com/api/job_freelance/JobFreelanceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance/src/main/java/com/api/job_freelance/ServletInitializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance/src/test/java/com/api/job_freelance/JobFreelanceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance_internal_db/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/api/job_freelance_internal_db/JobFreelanceInternalDbApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/api/job_freelance_internal_db/ServletInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/java/com/job_freelance_internal_db/ServletInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/test/java/com/api/job_freelance_internal_db/JobFreelanceInternalDbApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/job_freelance_internal_db/src/test/java/com/job_freelance_internal_db/JobFreelanceInternalDbApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/job-freelance-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/job-freelance-ui/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/job-freelance-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/job-freelance-ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/job-freelance-ui/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/job-freelance-ui/src/app/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/job-freelance-ui/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/job-freelance-ui/src/app/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/job-freelance-ui/src/assets/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/job-freelance-ui/src/assets/js/custom.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +129,8 @@
       <workItem from="1747064787349" duration="364000" />
       <workItem from="1747065167600" duration="313000" />
       <workItem from="1747116937519" duration="117000" />
+      <workItem from="1747404139835" duration="29000" />
+      <workItem from="1747404183985" duration="85000" />
     </task>
     <task id="LOCAL-00001" summary="chuẩn bị môi trường code">
       <option name="closed" value="true" />
