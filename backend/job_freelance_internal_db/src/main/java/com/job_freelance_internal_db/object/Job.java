@@ -12,9 +12,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import java.time.LocalDate;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Job {
     @Id
@@ -58,6 +55,114 @@ public class Job {
         this.creator = creator;
         this.applies = applies;
         this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
+
+    public Job() {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getRangeSalary() {
+        return rangeSalary;
+    }
+
+    public void setRangeSalary(String rangeSalary) {
+        this.rangeSalary = rangeSalary;
+    }
+
+    public String getRangeDuration() {
+        return rangeDuration;
+    }
+
+    public void setRangeDuration(String rangeDuration) {
+        this.rangeDuration = rangeDuration;
+    }
+
+    public LocalDate getDeadlineCV() {
+        return deadlineCV;
+    }
+
+    public void setDeadlineCV(LocalDate deadlineCV) {
+        this.deadlineCV = deadlineCV;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getRequirement() {
+        return requirement;
+    }
+
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public User getApplies() {
+        return applies;
+    }
+
+    public void setApplies(User applies) {
+        this.applies = applies;
+    }
+
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
+
+    public LocalDate getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDate updateDate) {
         this.updateDate = updateDate;
     }
 }

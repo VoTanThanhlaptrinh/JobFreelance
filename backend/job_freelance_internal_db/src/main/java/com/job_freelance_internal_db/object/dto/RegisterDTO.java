@@ -11,7 +11,7 @@ import lombok.Data;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
+
 public class RegisterDTO {
     @NotNull(message = "Username is null")
     private String username;
@@ -23,6 +23,12 @@ public class RegisterDTO {
     @AssertTrue(message = "Password and Re-password mismatch")
     public boolean isValid() {
         return password != null && password.equals(rePassword);
+    }
+
+    public RegisterDTO(String username, String rePassword, String password) {
+        this.username = username;
+        this.rePassword = rePassword;
+        this.password = password;
     }
 
     public User toUser(){

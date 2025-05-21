@@ -20,34 +20,40 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+
 public class JobServiceImpl implements JobService {
     private final JobRepository jobRepository;
     private final UserRepository userRepository;
+
+    public JobServiceImpl(JobRepository jobRepository, UserRepository userRepository) {
+        this.jobRepository = jobRepository;
+        this.userRepository = userRepository;
+    }
+
     @Value("${api.page.newest}")
     private long pageNewest;
     @Override
-    public Response<Object> getNDataJobNewest(long page) {
+    public Response getNDataJobNewest(long page) {
         PageRequest pageRequest = PageRequest.of((int) page, (int) pageNewest).withSort(Sort.Direction.DESC, "createDate");
-        return new Response<>(200,jobRepository.findAll(pageRequest),"success");
+        return new Response(200,jobRepository.findAll(pageRequest),"success");
     }
 
     @Override
-    public Response<Object> getJobPostOfUser(long userId) {
+    public Response getJobPostOfUser(long userId) {
         Optional<User> user = userRepository.findById(userId);
-        return user.<Response<Object>>map(value -> new Response<>(200, value.getJobPost(), "success")).orElseGet(() -> new Response<>(400, List.of(), "User not found"));
+        return user.<Response>map(value -> new Response(200, value.getJobPost(), "success")).orElseGet(() -> new Response(400, List.of(), "User not found"));
     }
 
     @Override
-    public Response<Object> getJobApplyOfUser(long userId) {
+    public Response getJobApplyOfUser(long userId) {
         Optional<User> user = userRepository.findById(userId);
-        return user.<Response<Object>>map(value -> new Response<>(200, value.getJobApplies(), "success")).orElseGet(() -> new Response<>(400, List.of(), "User not found"));
+        return user.<Response>map(value -> new Response(200, value.getJobApplies(), "success")).orElseGet(() -> new Response(400, List.of(), "User not found"));
 
     }
 
     @Override
-    public Response<Object> saveJob(Job job) {
+    public Response saveJob(Job job) {
         jobRepository.save(job);
-        return new Response<>(200,null,"Success");
+        return new Response(200,null,"Success");
     }
 }

@@ -24,10 +24,15 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableWebSecurity
 @Configuration
-@AllArgsConstructor
 public class SecurityConfig {
     private final JwtFilter jwtAuthFilter;
     private UserRepositoryDetailsService userDetailsService;
+
+    public SecurityConfig(JwtFilter jwtAuthFilter, UserRepositoryDetailsService userDetailsService) {
+        this.jwtAuthFilter = jwtAuthFilter;
+        this.userDetailsService = userDetailsService;
+    }
+
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // TODO Auto-generated method stub
