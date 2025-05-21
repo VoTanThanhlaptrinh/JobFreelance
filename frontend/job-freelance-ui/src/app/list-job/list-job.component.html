@@ -1,0 +1,63 @@
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('assets/images/hero_1.jpg');" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">List posted of User</h1>
+        <div class="custom-breadcrumbs">
+          <a href="#">Home</a> <span class="mx-2 slash">/</span>
+          <a href="#">Job</a> <span class="mx-2 slash">/</span>
+          <span class="text-white"><strong>List posted of User</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-section">
+  <div class="container">
+
+    <ul class="job-listings mb-5">
+      @for (item of listJob; track item.id) {
+        <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center mt-2" >
+
+          <div class="job-listing-logo">
+            <img src="assets/images/freelance.jpg" alt="Free Website Template by Free-Template.co"
+                 class="img-fluid" fill>
+          </div>
+
+          <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+            <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+              <h2>{{item.title}}</h2>
+              <span>Deadline apply CV</span>: <strong>{{item.deadlineCV}}</strong>
+            </div>
+            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+              <span>$</span> {{item.rangeSalary}}
+            </div>
+          </div>
+        </li>
+      } @empty {
+        <li>There are no items.</li>
+      }
+
+    </ul>
+
+    <div class="row pagination-wrap">
+      <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
+        <span>Showing 1-10 Of 43,167 Jobs</span>
+      </div>
+      <div class="col-md-6 text-center text-md-right">
+        <div class="custom-pagination ml-auto">
+          <a routerLink="#" class="prev">Prev</a>
+          <div class="d-inline-block">
+            <a routerLink="#" class="active">1</a>
+            <a routerLink="#">2</a>
+            <a routerLink="#">3</a>
+            <a routerLink="#">4</a>
+          </div>
+          <a routerLink="#" class="next">Next</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

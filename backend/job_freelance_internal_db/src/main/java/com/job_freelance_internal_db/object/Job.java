@@ -1,5 +1,6 @@
 package com.job_freelance_internal_db.object;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -31,10 +33,12 @@ public class Job {
     private byte[] file;
     @ManyToOne
     @JoinColumn(name = "creator_id")
+    @JsonIgnore
     private User creator;
 
     @ManyToOne
     @JoinColumn(name = "applies_id")
+    @JsonIgnore
     private User applies;
     @Column(nullable = false, updatable = false)
     @CreatedDate
@@ -164,5 +168,24 @@ public class Job {
 
     public void setUpdateDate(LocalDate updateDate) {
         this.updateDate = updateDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", rangeSalary='" + rangeSalary + '\'' +
+                ", rangeDuration='" + rangeDuration + '\'' +
+                ", deadlineCV=" + deadlineCV +
+                ", description='" + description + '\'' +
+                ", requirement='" + requirement + '\'' +
+                ", skill='" + skill + '\'' +
+                ", file=" + Arrays.toString(file) +
+                ", creator=" + creator +
+                ", applies=" + applies +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                '}';
     }
 }
