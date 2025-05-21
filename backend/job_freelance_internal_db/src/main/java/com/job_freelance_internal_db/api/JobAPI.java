@@ -15,9 +15,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
+
+import java.security.Principal;
 
 @RestController
 @CrossOrigin("*")
@@ -36,16 +41,20 @@ public class JobAPI {
         Response res =  jobService.getNDataJobNewest(page);
         return ResponseEntity.status(res.getStatus()).body(res);
     }
-    @GetMapping("/get/jobPost/{userId}")
-    public ResponseEntity<Response> getJobPostOfUser(@PathVariable long userId) {
-        Response res =  jobService.getJobApplyOfUser(userId);
+    @GetMapping("/get/jobPost/{page}")
+    public ResponseEntity<Response> getJobPostOfUser( @PathVariable long page) {
+        Principal principal = SecurityContextHolder.getContext().getAuthentication();
+        Response res = jobService.getJobPostOfUser(principal);
         return ResponseEntity.status(res.getStatus()).body(res);
     }
+
     @GetMapping("/get/apply/{userId}")
     public ResponseEntity<Response> getJobApplyOfUser(@PathVariable long userId) {
         Response res =  jobService.getJobApplyOfUser(userId);
         return ResponseEntity.status(res.getStatus()).body(res);
     }
+
+
     @PostMapping("/postJob")
     public ResponseEntity<Response> saveJob(@Valid @RequestBody JobDTO jobDTO, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {

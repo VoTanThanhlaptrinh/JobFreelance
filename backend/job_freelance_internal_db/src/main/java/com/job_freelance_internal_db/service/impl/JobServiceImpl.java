@@ -13,9 +13,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,9 +41,11 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Response getJobPostOfUser(long userId) {
-        Optional<User> user = userRepository.findById(userId);
-        return user.<Response>map(value -> new Response(200, value.getJobPost(), "success")).orElseGet(() -> new Response(400, List.of(), "User not found"));
+    public Response getJobPostOfUser(Principal principal){
+        User user = userRepository.findUserByUsername(principal.getName()).get();
+        user.getJobPost().forEach(System.out::println);
+        System.out.println(user.getJobPost().size());
+        return new Response(200, user.getJobPost(), "success");
     }
 
     @Override
