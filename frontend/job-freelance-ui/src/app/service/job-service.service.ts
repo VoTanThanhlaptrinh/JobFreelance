@@ -16,7 +16,8 @@ export class JobServiceService {
   getNDataJobNewest(number: number):Observable<any> {
     return this.http.get(`http://localhost:8080/api/job/get/newest/${number}`);
   }
-  getListJob(number: number):Observable<any> {
-    return this.http.get(`http://localhost:8080/api/job/get/jobPost/${number}`);
+  getListJob(page: number): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/job/get/jobPost/${page}`);
   }
+
 }

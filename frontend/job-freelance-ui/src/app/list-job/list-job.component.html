@@ -36,28 +36,30 @@
           </div>
         </li>
       } @empty {
-        <li>There are no items.</li>
+        <li>Người dùng hiện chưa đăng tuyển công việc nào.</li>
       }
 
     </ul>
 
-    <div class="row pagination-wrap">
+    <div class="row pagination-wrap" *ngIf="totalPages > 1">
       <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
-        <span>Showing 1-10 Of 43,167 Jobs</span>
+        <span>Đang hiển thị trang {{ initPage + 1 }} / {{ totalPages }}</span>
       </div>
       <div class="col-md-6 text-center text-md-right">
         <div class="custom-pagination ml-auto">
-          <a routerLink="#" class="prev">Prev</a>
+          <a (click)="goToPage(initPage - 1)" class="prev" [class.disabled]="initPage === 0">Prev</a>
+
           <div class="d-inline-block">
-            <a routerLink="#" class="active">1</a>
-            <a routerLink="#">2</a>
-            <a routerLink="#">3</a>
-            <a routerLink="#">4</a>
+            <a *ngFor="let page of [].constructor(totalPages); let i = index"
+               (click)="goToPage(i)"
+               [class.active]="initPage === i">{{ i + 1 }}</a>
           </div>
-          <a routerLink="#" class="next">Next</a>
+
+          <a (click)="goToPage(initPage + 1)" class="next" [class.disabled]="initPage + 1 === totalPages">Next</a>
         </div>
       </div>
     </div>
+
 
   </div>
 </section>

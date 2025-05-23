@@ -1,36 +1,58 @@
-import {Component, OnInit} from '@angular/core';
-import {JobServiceService} from '../service/job-service.service';
-import {error} from 'jquery';
+import { Component, OnInit } from '@angular/core';
+import { JobServiceService } from '../service/job-service.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-list-job',
-  imports: [],
   templateUrl: './list-job.component.html',
-  styleUrl: './list-job.component.css'
+  styleUrls: ['./list-job.component.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
-export class ListJobComponent implements OnInit{
-  constructor(private jobService: JobServiceService ) {
-  }
-  listJob: any = [];
-  initPage:number = 0;
-  getListJob() {
-    this.jobService.getListJob(this.initPage).subscribe({
-      next: (res) =>{
-        this.listJob = res.data.map((item: any) => ({
-          id : item.id,
-          title: item.title,
-          rangeSalary: item.rangeSalary,
-          deadlineCV: item.deadlineCV,
-        }));
-        console.log(res.data.content);
-      },
-      error: (error) =>{
-        console.log(error.message)
-      }
-    })
-  }
+export class ListJobComponent implements OnInit {
+
+  listJob: any[] = [];
+  message: string = '';
+  initPage: number = 0;
+  totalPages: number = 0;
+
+  constructor(private jobService: JobServiceService) {}
 
   ngOnInit(): void {
     this.getListJob();
+  }
+
+  getListJob(): void {
+    this.jobService.getListJob(this.initPage).subscribe({
+      next: (res) => {
+        this.message = res.message;
+
+        const data = res.data;
+
+        if (data && data.jobs) {
+          this.listJob = data.jobs;
+          this.totalPages = data.totalPages;
+        } else {
+          this.listJob = [];
+          this.totalPages = 0;
+        }
+      },
+      error: (error) => {
+        this.message = 'Lỗi khi tải danh sách công việc.';
+        this.listJob = [];
+        this.totalPages = 0;
+      }
+    });
+  }
+
+  goToPage(page: number): void {
+    if (page >= 0 && page < this.totalPages) {
+      this.initPage = page;
+      this.getListJob();
+    }
+  }
+
+  trackByJobId(index: number, item: any): number {
+    return item.id;
   }
 }
