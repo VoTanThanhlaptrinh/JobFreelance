@@ -35,7 +35,6 @@ public class Job {
     @JoinColumn(name = "creator_id")
     @JsonIgnore
     private User creator;
-
     @ManyToOne
     @JoinColumn(name = "applies_id")
     @JsonIgnore

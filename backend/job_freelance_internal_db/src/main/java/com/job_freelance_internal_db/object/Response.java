@@ -5,9 +5,10 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 
 
-public class Response {
+public class Response  {
     int status;
     Object data;
     String message;
@@ -17,6 +18,7 @@ public class Response {
         this.data = data;
         this.message = message;
     }
+
 
     public int getStatus() {
         return status;

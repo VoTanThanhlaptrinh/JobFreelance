@@ -14,7 +14,9 @@ import lombok.NonNull;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 
@@ -37,8 +39,7 @@ public class JobDTO {
     private String requirement;
     @NotNull(message = "skill is null")
     private String skill;
-    @Lob
-    private byte[] file;
+    private MultipartFile file;
 
     @AssertTrue
     public boolean isValidDeadline() {
@@ -54,7 +55,7 @@ public class JobDTO {
         return minDuration <= maxDuration;
     }
 
-    public JobDTO(String title, double minSalary, double maxSalary, int minDuration, int maxDuration, LocalDate deadlineCV, String description, String requirement, String skill, byte[] file) {
+    public JobDTO(String title, double minSalary, double maxSalary, int minDuration, int maxDuration, LocalDate deadlineCV, String description, String requirement, String skill, MultipartFile file) {
         this.title = title;
         this.minSalary = minSalary;
         this.maxSalary = maxSalary;
@@ -70,9 +71,11 @@ public class JobDTO {
     public JobDTO() {
     }
 
-    public Job toJob() {
+    public Job toJob() throws IOException {
         Job job = new Job();
-        job.setFile(file);
+        if(file != null) {
+            job.setFile(file.getBytes());
+        }
         job.setTitle(title);
         job.setDescription(description);
         job.setDeadlineCV(deadlineCV);
@@ -156,11 +159,11 @@ public class JobDTO {
         this.skill = skill;
     }
 
-    public byte[] getFile() {
+    public MultipartFile getFile() {
         return file;
     }
 
-    public void setFile(byte[] file) {
+    public void setFile(MultipartFile file) {
         this.file = file;
     }
 }
