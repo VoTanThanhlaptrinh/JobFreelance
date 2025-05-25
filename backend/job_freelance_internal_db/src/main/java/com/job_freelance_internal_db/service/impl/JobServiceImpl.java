@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+// 11.1.12: Spring tự inject thực thể JobServiceImpl để thực thi phương thức.
 @Service
 
 public class JobServiceImpl implements JobService {
@@ -75,8 +75,11 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Response saveJob(Job job) {
+    public Response<Object> saveJob(Job job) {
+        //11.1.13: gọi phương thức save(job): jobRepository để lưu job xuống db
         jobRepository.save(job);
-        return new Response(200,null,"Success");
+        //11.1.14: Tạo đối tượng Response thông báo lưu job thành công
+        //11.1.15: trả về một response thông báo  đã lưu thành công
+        return new Response<>(200,null,"Success");
     }
 }

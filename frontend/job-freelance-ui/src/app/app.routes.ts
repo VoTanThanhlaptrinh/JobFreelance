@@ -18,6 +18,7 @@ import {TestimonialsComponent} from './testimonials/testimonials.component';
 import {ListJobComponent} from './list-job/list-job.component';
 
 export const routes: Routes = [
+  // khai báo trang chủ
   {path: '', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'blog', component: BlogComponent},
@@ -30,6 +31,7 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'portfolio', component: PortfolioComponent},
   {path: 'portfolio-single', component: PortfolioSingleComponent},
+  // khai báo đường dẫn đi tới trang post-job
   {path: 'post-job', component: PostJobComponent},
   {path: 'service-single', component: ServiceSingleComponent},
   {path: 'services', component: ServicesComponent},
