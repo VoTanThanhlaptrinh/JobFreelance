@@ -75,11 +75,11 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Response<Object> saveJob(Job job) {
+    public Response saveJob(Job job) {
         //11.1.13: gọi phương thức save(job): jobRepository để lưu job xuống db
         jobRepository.save(job);
         //11.1.14: Tạo đối tượng Response thông báo lưu job thành công
         //11.1.15: trả về một response thông báo  đã lưu thành công
-        return new Response<>(200,null,"Success");
+        return new Response(200,null,"Success");
     }
 }
