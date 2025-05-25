@@ -1,20 +1,18 @@
 package com.job_freelance_internal_db.service.impl;
 
-import com.job_freelance_internal_db.object.Response;
-import com.job_freelance_internal_db.object.Role;
-import com.job_freelance_internal_db.object.User;
+import com.job_freelance_internal_db.model.Response;
+import com.job_freelance_internal_db.model.Role;
+import com.job_freelance_internal_db.model.User;
 import com.job_freelance_internal_db.repositories.RoleRepository;
 import com.job_freelance_internal_db.repositories.UserRepository;
 import com.job_freelance_internal_db.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 

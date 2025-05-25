@@ -1,7 +1,6 @@
-package com.job_freelance_internal_db.object;
+package com.job_freelance_internal_db.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.job_freelance_internal_db.object.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

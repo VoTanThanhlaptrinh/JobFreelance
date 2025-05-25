@@ -1,4 +1,4 @@
-package com.job_freelance_internal_db.object.dto;
+package com.job_freelance_internal_db.model.dto;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
 package com.job_freelance_internal_db.repositories;
 
-import com.job_freelance_internal_db.object.CV;
+import com.job_freelance_internal_db.model.CV;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

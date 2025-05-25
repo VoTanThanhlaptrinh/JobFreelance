@@ -1,8 +1,8 @@
 package com.job_freelance_internal_db;
 
-import com.job_freelance_internal_db.object.Job;
-import com.job_freelance_internal_db.object.Role;
-import com.job_freelance_internal_db.object.User;
+import com.job_freelance_internal_db.model.Job;
+import com.job_freelance_internal_db.model.Role;
+import com.job_freelance_internal_db.model.User;
 import com.job_freelance_internal_db.repositories.JobRepository;
 import com.job_freelance_internal_db.repositories.RoleRepository;
 import com.job_freelance_internal_db.repositories.UserRepository;
@@ -23,7 +23,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @SpringBootApplication
 @EnableJpaRepositories

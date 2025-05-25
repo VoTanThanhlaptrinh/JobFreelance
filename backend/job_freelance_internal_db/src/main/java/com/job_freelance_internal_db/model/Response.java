@@ -1,10 +1,4 @@
-package com.job_freelance_internal_db.object;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
+package com.job_freelance_internal_db.model;
 
 
 public class Response {

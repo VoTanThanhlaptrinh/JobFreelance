@@ -1,14 +1,10 @@
-package com.job_freelance_internal_db.object;
+package com.job_freelance_internal_db.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -31,6 +27,9 @@ public class Job {
     private String skill;
     @Lob
     private byte[] file;
+
+//    13.1.9 Từ phương thức findByCreator(User creator, Pageable pageable)
+//    thực hiện truy xuất ánh xạ đến đối tượng Job để lấy các công việc của user qua entity @manyone với user
     @ManyToOne
     @JoinColumn(name = "creator_id")
     @JsonIgnore

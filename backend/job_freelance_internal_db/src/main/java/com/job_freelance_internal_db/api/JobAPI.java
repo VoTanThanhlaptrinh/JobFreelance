@@ -1,27 +1,18 @@
 package com.job_freelance_internal_db.api;
 
-import com.job_freelance_internal_db.object.Job;
-import com.job_freelance_internal_db.object.Response;
-import com.job_freelance_internal_db.object.User;
-import com.job_freelance_internal_db.object.dto.JobDTO;
-import com.job_freelance_internal_db.repositories.JobRepository;
-import com.job_freelance_internal_db.repositories.UserRepository;
+import com.job_freelance_internal_db.model.Response;
+import com.job_freelance_internal_db.model.dto.JobDTO;
 import com.job_freelance_internal_db.service.JobService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.security.Principal;
 
@@ -42,11 +33,14 @@ public class JobAPI {
         Response res =  jobService.getNDataJobNewest(page);
         return ResponseEntity.status(res.getStatus()).body(res);
     }
+   // 13.1.5 Nhận request /get/jobPost/{page} từ frontend và sau đó gọi phương thức getPostJobOfUser() ở lớp JobAPI
     @GetMapping("/get/jobPost/{page}")
     public ResponseEntity<Response> getJobPostOfUser(@PathVariable int page) {
+   // 13.1.6 Gọi SecurityContextHolder.getContext().getAuthentication() để lấy thông tin của user nhà tuyển dụng
+   // đã đăng nhập trước đó, gán cho biến principal
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
         Pageable pageable = PageRequest.of(page, 10, Sort.by("id").descending());
-
+//        13.1.12 Trả về Response cho /get/jobPost/{page} ở lớp JobAPI
         Response res = jobService.getJobPostOfUser(principal, pageable);
         return ResponseEntity.status(res.getStatus()).body(res);
     }

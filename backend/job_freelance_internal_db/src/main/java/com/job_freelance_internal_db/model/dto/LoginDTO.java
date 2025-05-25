@@ -1,7 +1,6 @@
-package com.job_freelance_internal_db.object.dto;
+package com.job_freelance_internal_db.model.dto;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 
 public class LoginDTO {
     @NotNull(message = "Username is null")

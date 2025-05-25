@@ -1,8 +1,7 @@
 package com.job_freelance_internal_db.repositories;
 
-import com.job_freelance_internal_db.object.Role;
+import com.job_freelance_internal_db.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package com.job_freelance_internal_db.object;
+package com.job_freelance_internal_db.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

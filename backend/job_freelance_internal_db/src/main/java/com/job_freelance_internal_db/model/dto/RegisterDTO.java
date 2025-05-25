@@ -1,14 +1,10 @@
-package com.job_freelance_internal_db.object.dto;
+package com.job_freelance_internal_db.model.dto;
 
-import com.job_freelance_internal_db.object.Role;
-import com.job_freelance_internal_db.object.User;
+import com.job_freelance_internal_db.model.User;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.Set;
 
 @Data
 

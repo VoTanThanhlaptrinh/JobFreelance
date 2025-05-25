@@ -1,17 +1,11 @@
-package com.job_freelance_internal_db.object.dto;
+package com.job_freelance_internal_db.model.dto;
 
-import com.job_freelance_internal_db.object.Job;
+import com.job_freelance_internal_db.model.Job;
 import jakarta.persistence.Lob;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 

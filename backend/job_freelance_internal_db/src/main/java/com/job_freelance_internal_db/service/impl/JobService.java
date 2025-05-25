@@ -36,6 +36,8 @@ public class JobService implements com.job_freelance_internal_db.service.JobServ
         PageRequest pageRequest = PageRequest.of((int) page, (int) pageNewest).withSort(Sort.Direction.DESC, "createDate");
         return new Response(200,jobRepository.findAll(pageRequest),"success");
     }
+//    13.1.7 Trỏ đến đến lớp JobService, gọi phương thức getJobPostOfUser(Principal principal, Pageable pageable)
+//    để lấy danh sách các công việc đã đăng tuyển của nhà duyển dụng đó
     @Override
     public Response getJobPostOfUser(Principal principal, Pageable pageable) {
         Optional<User> userOptional = userRepository.findUserByUsername(principal.getName());
@@ -44,6 +46,7 @@ public class JobService implements com.job_freelance_internal_db.service.JobServ
         }
 
         User user = userOptional.get();
+//        13.1.10 Trả về Page<job> cho JobService, Page<job> được gán cho biến jobPosts
         Page<Job> jobPosts = jobRepository.findByCreator(user, pageable);
 
         if (jobPosts.isEmpty()) {
@@ -55,7 +58,7 @@ public class JobService implements com.job_freelance_internal_db.service.JobServ
         responseData.put("totalPages", jobPosts.getTotalPages());
         responseData.put("totalElements", jobPosts.getTotalElements());
         responseData.put("currentPage", jobPosts.getNumber());
-
+//        13.1.11 Thực hiện new Response(200, jobPosts, message), có danh sách công việc (nếu có), thông báo đi kèm, 200
         return new Response(200, responseData, "Lấy danh sách công việc thành công.");
     }
 

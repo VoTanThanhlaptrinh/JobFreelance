@@ -1,13 +1,12 @@
 package com.job_freelance_internal_db.api;
 
-import com.job_freelance_internal_db.object.Response;
-import com.job_freelance_internal_db.object.User;
-import com.job_freelance_internal_db.object.dto.LoginDTO;
-import com.job_freelance_internal_db.object.dto.RegisterDTO;
+import com.job_freelance_internal_db.model.Response;
+import com.job_freelance_internal_db.model.User;
+import com.job_freelance_internal_db.model.dto.LoginDTO;
+import com.job_freelance_internal_db.model.dto.RegisterDTO;
 import com.job_freelance_internal_db.service.JwtService;
 import com.job_freelance_internal_db.service.UserService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

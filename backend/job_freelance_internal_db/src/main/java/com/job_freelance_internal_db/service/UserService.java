@@ -1,7 +1,7 @@
 package com.job_freelance_internal_db.service;
 
-import com.job_freelance_internal_db.object.Response;
-import com.job_freelance_internal_db.object.User;
+import com.job_freelance_internal_db.model.Response;
+import com.job_freelance_internal_db.model.User;
 
 public interface UserService {
     public Response checkUser(String username, String password);
