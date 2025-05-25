@@ -140,6 +140,14 @@ public class JobFreelanceApplication {
                     "MySQL, Database Design, Performance Tuning",
                     null, user, null, LocalDate.now(), null));
 
+            jobList.add(new Job(
+                    "Web Developer for E-commerce Site", "1000 - 1500 USD", "20 - 30 days",
+                    "Develop a responsive e-commerce website using modern web technologies.",
+                    "Proficiency in HTML, CSS, JavaScript. Experience with payment gateways.",
+                    LocalDate.now().plusDays(30),
+                    "HTML, CSS, JavaScript, React, Node.js",
+                    null, user, null, LocalDate.now(), null));
+
 // Lưu vào DB
             jobRepository.saveAll(jobList);
 

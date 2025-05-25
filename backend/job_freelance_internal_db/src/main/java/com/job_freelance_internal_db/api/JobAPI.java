@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,11 +43,14 @@ public class JobAPI {
         return ResponseEntity.status(res.getStatus()).body(res);
     }
     @GetMapping("/get/jobPost/{page}")
-    public ResponseEntity<Response> getJobPostOfUser( @PathVariable long page) {
+    public ResponseEntity<Response> getJobPostOfUser(@PathVariable int page) {
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        Response res = jobService.getJobPostOfUser(principal);
+        Pageable pageable = PageRequest.of(page, 10, Sort.by("id").descending());
+
+        Response res = jobService.getJobPostOfUser(principal, pageable);
         return ResponseEntity.status(res.getStatus()).body(res);
     }
+
 
     @GetMapping("/get/apply/{userId}")
     public ResponseEntity<Response> getJobApplyOfUser(@PathVariable long userId) {
