@@ -19,15 +19,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.io.IOException;
-
 @RestController
 @CrossOrigin("*")
 @RequestMapping(value = "api/job", produces = "application/json")
-@RequiredArgsConstructor
+
 @Slf4j
 public class JobAPI {
     private final JobService jobService;
+
+    public JobAPI(JobService jobService) {
+        this.jobService = jobService;
+    }
+
     @GetMapping("/get/newest/{page}")
     public ResponseEntity<Response> getNDataJobNewest(@PathVariable long page) {
         Response res =  jobService.getNDataJobNewest(page);
@@ -43,19 +46,18 @@ public class JobAPI {
         Response res =  jobService.getJobApplyOfUser(userId);
         return ResponseEntity.status(res.getStatus()).body(res);
     }
-    /*11.1.8: nhận request /api/job/postJob tại JobAPI, trích xuất dữ liệu từ body.*/
-    @PostMapping(value = "/postJob")
-    //11.1.9: Tạo đối tượng JobDTO từ data của form rồi tiến hành kiểm tra dữ liệu hợp lệ
-    public ResponseEntity<Response> saveJob(@Valid @ModelAttribute JobDTO jobDTO, BindingResult bindingResult) throws IOException {
-        //11.4.1: Bắt lỗi dữ liệu không hợp lệ khi tạo jobDTO.
+    @PostMapping("/postJob")
+    public ResponseEntity<Response> saveJob(@Valid @RequestBody JobDTO jobDTO, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Response(404,null,bindingResult.getAllErrors().get(0).getDefaultMessage()));
         }
-        //11.1.10: Tạo đối tượng Job từ data của JobDTO qua Job job = jobDTO.toJob()
-        Job job = jobDTO.toJob();
-        //11.1.11: gọi phương thức saveJob(job): jobService để lưu job
-        Response res = jobService.saveJob(job);
-        //11.1.16: trả về một response thông báo đăng thành công
+        Response res = jobService.saveJob(jobDTO.toJob());
+        return ResponseEntity.status(res.getStatus()).body(res);
+    }
+
+    @GetMapping("/get/{jobId}")
+    public ResponseEntity<Response> getJobById(@PathVariable long jobId) {
+        Response res =  jobService.getJobById(jobId);
         return ResponseEntity.status(res.getStatus()).body(res);
     }
 }

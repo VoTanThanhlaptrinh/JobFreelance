@@ -54,9 +54,11 @@ public class User implements UserDetails {
     private List<Token> tokens;
 
     @OneToMany(mappedBy = "creator")
+    @JsonIgnore
     private List<Job> jobPost;
 
     @OneToMany(mappedBy = "applies")
+    @JsonIgnore
     private List<Job> jobApplies;
 
     @OneToMany(mappedBy = "user_cv")

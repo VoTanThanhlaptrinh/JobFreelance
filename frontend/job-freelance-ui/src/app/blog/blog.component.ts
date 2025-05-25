@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-blog',
   imports: [],
   templateUrl: './blog.component.html',
+  standalone: true,
   styleUrl: './blog.component.css'
 })
 export class BlogComponent {

@@ -4,8 +4,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const jwtToken = localStorage.getItem('token');
 
   // Các API không cần token
-  const noAuthUrls = ['/login', '/register','/isLogin'];
-
+  const noAuthUrls = ['/login', '/register','/isLogin','/job-single'];
   // Nếu URL nằm trong danh sách không cần JWT, thì bỏ qua
   if (noAuthUrls.some(url => req.url.includes(url))) {
     return next(req);

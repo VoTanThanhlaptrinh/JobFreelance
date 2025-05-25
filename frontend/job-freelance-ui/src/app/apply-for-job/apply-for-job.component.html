@@ -1,0 +1,85 @@
+<!-- HOME -->
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('assets/images/hero_1.jpg');" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">Apply CV</h1>
+        <div class="custom-breadcrumbs">
+          <a href="#">Home</a> <span class="mx-2 slash">/</span>
+          <a href="#">Job</a> <span class="mx-2 slash">/</span>
+          <a href="#">Product Designer</a> <span class="mx-2 slash">/</span>
+          <span class="text-white"><strong>Apply CV</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<form id="cvForm">
+  <div class="section">
+    <h2>Thông Tin Cá Nhân</h2>
+    <div class="grid">
+      <div>
+        <label for="fullName">Họ và Tên</label>
+        <input id="fullName" type="text" />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" type="email" />
+      </div>
+      <div>
+        <label for="phone">Số Điện Thoại</label>
+        <input id="phone" type="tel" />
+      </div>
+      <div>
+        <label for="avatar">Ảnh Đại Diện</label>
+        <input id="avatar" type="file" />
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Vị Trí &amp; Kỹ Năng</h2>
+    <div class="grid">
+      <div>
+        <label for="desiredPosition">Vị Trí Mong Muốn</label>
+        <input id="desiredPosition" type="text" />
+      </div>
+      <div>
+        <label for="skills">Kỹ Năng</label>
+        <input id="skills" type="text" />
+      </div>
+      <div>
+        <label for="summary">Tóm Tắt</label>
+        <input id="summary" type="text" />
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Học Vấn &amp; Kinh Nghiệm</h2>
+    <div class="grid">
+      <div>
+        <label for="educationLevel">Trình Độ Học Vấn</label>
+        <input id="educationLevel" type="text" />
+      </div>
+      <div>
+        <label for="yearsExperienceEducation">Số Năm Kinh Nghiệm</label>
+        <input id="yearsExperienceEducation" type="text" />
+      </div>
+      <div>
+        <label for="uploadCVFile">Tải Lên CV</label>
+        <input id="uploadCVFile" name="cvFile" type="file" />
+      </div>
+    </div>
+  </div>
+
+  <button type="submit">Gửi Đơn Ứng Tuyển</button>
+
+  <div id="successMessage" style="display: none; color: green; margin-top: 20px;">
+    Đơn ứng tuyển của bạn đã được gửi thành công!
+  </div>
+
+</form>
+
+

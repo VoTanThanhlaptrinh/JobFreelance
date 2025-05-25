@@ -16,14 +16,18 @@ import {param} from 'jquery';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements AfterViewInit, OnInit{
-  goDetails(id: any) {
-      this.acRoute.routeConfig
-  }
+
   initPage:number = 0;
   newestJob: any = [];
 
-  constructor(private jobService:JobServiceService, private acRoute: ActivatedRoute) {
-
+  constructor(
+    private jobService: JobServiceService,
+    private acRoute: ActivatedRoute,
+    private router: Router
+  ) {}
+  goDetails(id: number) {
+    console.log('Navigating to', id);
+    this.router.navigate(['/job-single', id]);
   }
   ngOnInit(): void {
       this.loadNewstJob();

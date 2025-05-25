@@ -9,6 +9,7 @@ import {delay} from 'rxjs';
   selector: 'app-login',
   imports: [FormsModule, NgIf, NgClass],
   templateUrl: './login.component.html',
+  standalone: true,
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
