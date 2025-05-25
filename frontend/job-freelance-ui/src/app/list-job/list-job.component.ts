@@ -19,6 +19,7 @@ export class ListJobComponent implements OnInit {
   constructor(private jobService: JobServiceService) {}
 
   ngOnInit(): void {
+    // 13.1.3 Sau đó gọi phương thức getListJob() trong ngOnInit() từ lớp ListJobComponent
     this.getListJob();
   }
 
@@ -28,7 +29,7 @@ export class ListJobComponent implements OnInit {
         this.message = res.message;
 
         const data = res.data;
-
+        // 13.1.14 Sau đó trả về Observable<Response> cho ListJobConponent, được ánh xạ đến listJob: any = []
         if (data && data.jobs) {
           this.listJob = data.jobs;
           this.totalPages = data.totalPages;

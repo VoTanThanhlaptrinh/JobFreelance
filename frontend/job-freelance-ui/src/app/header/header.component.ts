@@ -34,6 +34,8 @@ export class HeaderComponent implements AfterViewInit{
     window.location.reload()
     localStorage.removeItem('token');
   }
+  // 13.1.2 Gọi hàm doListJob() để thực thiện chuyển đến trang (/list-Job)
+  // danh sách các công việc đã đăng tuyển của nhà tuyển dụng
   doListJob(){
     window.location.replace("/list-Job")
   }

@@ -1,22 +1,16 @@
 package com.job_freelance_internal_db.service.impl;
 
-import com.job_freelance_internal_db.object.Job;
-import com.job_freelance_internal_db.object.Response;
-import com.job_freelance_internal_db.object.User;
+import com.job_freelance_internal_db.model.Job;
+import com.job_freelance_internal_db.model.Response;
+import com.job_freelance_internal_db.model.User;
 import com.job_freelance_internal_db.repositories.JobRepository;
 import com.job_freelance_internal_db.repositories.UserRepository;
-import com.job_freelance_internal_db.service.JobService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.security.Principal;
 import java.util.HashMap;
@@ -26,11 +20,11 @@ import java.util.Optional;
 
 @Service
 
-public class JobServiceImpl implements JobService {
+public class JobService implements com.job_freelance_internal_db.service.JobService {
     private final JobRepository jobRepository;
     private final UserRepository userRepository;
 
-    public JobServiceImpl(JobRepository jobRepository, UserRepository userRepository) {
+    public JobService(JobRepository jobRepository, UserRepository userRepository) {
         this.jobRepository = jobRepository;
         this.userRepository = userRepository;
     }
@@ -42,7 +36,7 @@ public class JobServiceImpl implements JobService {
         PageRequest pageRequest = PageRequest.of((int) page, (int) pageNewest).withSort(Sort.Direction.DESC, "createDate");
         return new Response(200,jobRepository.findAll(pageRequest),"success");
     }
-
+    @Override
     public Response getJobPostOfUser(Principal principal, Pageable pageable) {
         Optional<User> userOptional = userRepository.findUserByUsername(principal.getName());
         if (userOptional.isEmpty()) {
@@ -50,17 +44,17 @@ public class JobServiceImpl implements JobService {
         }
 
         User user = userOptional.get();
-        Page<Job> jobPage = jobRepository.findByCreator(user, pageable);
+        Page<Job> jobPosts = jobRepository.findByCreator(user, pageable);
 
-        if (jobPage.isEmpty()) {
+        if (jobPosts.isEmpty()) {
             return new Response(200, null, "Người dùng hiện chưa đăng công việc nào.");
         }
 
         Map<String, Object> responseData = new HashMap<>();
-        responseData.put("jobs", jobPage.getContent());
-        responseData.put("totalPages", jobPage.getTotalPages());
-        responseData.put("totalElements", jobPage.getTotalElements());
-        responseData.put("currentPage", jobPage.getNumber());
+        responseData.put("jobs", jobPosts.getContent());
+        responseData.put("totalPages", jobPosts.getTotalPages());
+        responseData.put("totalElements", jobPosts.getTotalElements());
+        responseData.put("currentPage", jobPosts.getNumber());
 
         return new Response(200, responseData, "Lấy danh sách công việc thành công.");
     }
