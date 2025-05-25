@@ -19,6 +19,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.io.IOException;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping(value = "api/job", produces = "application/json")
@@ -42,9 +44,9 @@ public class JobAPI {
         return ResponseEntity.status(res.getStatus()).body(res);
     }
     /*11.1.8: nhận request /api/job/postJob tại JobAPI, trích xuất dữ liệu từ body.*/
-    @PostMapping("/postJob")
+    @PostMapping(value = "/postJob")
     //11.1.9: Tạo đối tượng JobDTO từ data của form rồi tiến hành kiểm tra dữ liệu hợp lệ
-    public ResponseEntity<Response> saveJob(@Valid @RequestBody JobDTO jobDTO, BindingResult bindingResult) {
+    public ResponseEntity<Response> saveJob(@Valid @ModelAttribute JobDTO jobDTO, BindingResult bindingResult) throws IOException {
         //11.4.1: Bắt lỗi dữ liệu không hợp lệ khi tạo jobDTO.
         if(bindingResult.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Response(404,null,bindingResult.getAllErrors().get(0).getDefaultMessage()));

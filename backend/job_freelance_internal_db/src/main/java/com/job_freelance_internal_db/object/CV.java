@@ -1,5 +1,6 @@
 package com.job_freelance_internal_db.object;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +24,8 @@ public class CV {
     private byte[] data;
 
     @ManyToOne
-    @JoinColumn(name = "user_cv_id")
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user_cv;
     @Column(nullable = false, updatable = false)
     @CreatedDate
