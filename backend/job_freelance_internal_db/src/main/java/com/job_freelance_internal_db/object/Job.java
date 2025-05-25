@@ -1,6 +1,5 @@
 package com.job_freelance_internal_db.object;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.LocalDate;
-import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -33,12 +32,13 @@ public class Job {
     private byte[] file;
     @ManyToOne
     @JoinColumn(name = "creator_id")
-    @JsonIgnore
     private User creator;
+
     @ManyToOne
     @JoinColumn(name = "applies_id")
-    @JsonIgnore
     private User applies;
+    @OneToMany(mappedBy = "job")
+    private List<CV> cv_apply;
     @Column(nullable = false, updatable = false)
     @CreatedDate
     private LocalDate createDate;
@@ -169,22 +169,11 @@ public class Job {
         this.updateDate = updateDate;
     }
 
-    @Override
-    public String toString() {
-        return "Job{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", rangeSalary='" + rangeSalary + '\'' +
-                ", rangeDuration='" + rangeDuration + '\'' +
-                ", deadlineCV=" + deadlineCV +
-                ", description='" + description + '\'' +
-                ", requirement='" + requirement + '\'' +
-                ", skill='" + skill + '\'' +
-                ", file=" + Arrays.toString(file) +
-                ", creator=" + creator +
-                ", applies=" + applies +
-                ", createDate=" + createDate +
-                ", updateDate=" + updateDate +
-                '}';
+    public List<CV> getCv_apply() {
+        return cv_apply;
+    }
+
+    public void setCv_apply(List<CV> cv_apply) {
+        this.cv_apply = cv_apply;
     }
 }

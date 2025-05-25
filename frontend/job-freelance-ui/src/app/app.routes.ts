@@ -15,10 +15,9 @@ import {PostJobComponent} from './post-job/post-job.component';
 import {ServiceSingleComponent} from './service-single/service-single.component';
 import {ServicesComponent} from './services/services.component';
 import {TestimonialsComponent} from './testimonials/testimonials.component';
-import {ListJobComponent} from './list-job/list-job.component';
+import {ApplyForJobComponent} from './apply-for-job/apply-for-job.component';
 
 export const routes: Routes = [
-  // khai báo trang chủ
   {path: '', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'blog', component: BlogComponent},
@@ -27,14 +26,13 @@ export const routes: Routes = [
   {path: 'fag', component: FagComponent},
   {path: 'gallery', component: GalleryComponent},
   {path: 'job-listings', component: JobListingsComponent},
-  {path: 'job-single', component: JobSingleComponent},
+  {path: 'job-single/:id', component: JobSingleComponent},
   {path: 'login', component: LoginComponent},
   {path: 'portfolio', component: PortfolioComponent},
   {path: 'portfolio-single', component: PortfolioSingleComponent},
-  // khai báo đường dẫn đi tới trang post-job
   {path: 'post-job', component: PostJobComponent},
   {path: 'service-single', component: ServiceSingleComponent},
   {path: 'services', component: ServicesComponent},
   {path: 'testimonials', component: TestimonialsComponent},
-  {path: 'list-Job', component: ListJobComponent},
+  {path: 'apply-for-job/:id', component: ApplyForJobComponent}
 ];

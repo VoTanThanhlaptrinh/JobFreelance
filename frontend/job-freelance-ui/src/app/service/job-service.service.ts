@@ -19,4 +19,10 @@ export class JobServiceService {
   getListJob(page: number): Observable<any> {
     return this.http.get(`http://localhost:8080/api/job/get/jobPost/${page}`);
   }
+  postCV(form:any):Observable<any>{
+    return this.http.post(`http://localhost:8080/api/cv/submit`,form);
+  }
+  getJob(jobId:number):Observable<any>{
+    return this.http.get(`http://localhost:8080/api/job/get/${jobId}`,);
+  }
 }

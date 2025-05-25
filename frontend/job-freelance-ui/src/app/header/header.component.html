@@ -15,12 +15,12 @@
         <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
           <li ><a routerLink="/" routerLinkActive="active">Home</a></li>
           <li ><a routerLink="/about" routerLinkActive="active">About</a></li>
-          <li class="has-children">
+          <li>
             <a  routerLink="/job-listings" routerLinkActive="active">Job Listings</a>
-            <ul class="dropdown">
-              <li ><a routerLink="/job-single" routerLinkActive="active">Job Single</a></li>
-<!--              <li ><a routerLink="/post-job" routerLinkActive="active">Post a Job</a></li>-->
-            </ul>
+<!--            <ul class="dropdown">-->
+<!--&lt;!&ndash;              <li ><a routerLink="/job-single" routerLinkActive="active">Job Single</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              <li ><a routerLink="/post-job" routerLinkActive="active">Post a Job</a></li>&ndash;&gt;-->
+<!--            </ul>-->
           </li>
           <li  class="has-children">
             <a routerLink="/services" routerLinkActive="active">Pages</a>
@@ -41,7 +41,6 @@
             <li  class="has-children">
               <a  routerLinkActive="active">Settings</a>
               <ul class="dropdown">
-                <li ><a routerLink="/" routerLinkActive="active" (click)="doListJob()">List Posted Job</a></li>
                 <li ><a routerLink="/" routerLinkActive="active" (click)="doLogout()">logout</a></li>
               </ul>
             </li>
@@ -57,8 +56,6 @@
       <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
         <div class="ml-auto">
           @if (isLogin){
-            <!--11.1.1: Trên thanh điều hướng có một thẻ <a> với nội dung là “Post a Job” được
-            ánh xạ tới trang đăng tuyển công việc (/post-job)-->
           <a routerLink="/post-job" routerLinkActive="active"
              class="btn btn-outline-white border-width-2 d-none d-lg-inline-block" ><span
             class="mr-2 icon-add"></span>Post a Job</a>
