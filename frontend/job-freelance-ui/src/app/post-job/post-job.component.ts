@@ -32,6 +32,17 @@ export class PostJobComponent {
         /*11.1.14: trả về một response thông báo đăng thành công*/
         this.messageType = 'success'
         this.message = res.message;
+        this.job = {
+          title: '',
+          minSalary:'',
+          maxSalary: '',
+          minDuration: '',
+          maxDuration: '',
+          deadlineCV:'',
+          description:'',
+          requirement:'',
+          skill:'',
+        }
       },error: (err) => {
         /*11.4.2: Hiển thị thông báo dữ liệu không hợp lệ.*/
         this.messageType= 'error';

@@ -31,16 +31,15 @@
             <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
           </div>
           <div class="col-6">
-            <a  class="btn btn-block btn-primary btn-md">Save Job</a>
+            <a class="btn btn-block btn-primary btn-md">Save Job</a>
           </div>
         </div>
       </div>
     </div>
+
     <div class="row mb-5">
       <div class="col-lg-12">
-        <!--11.1.2: Khi nhà tuyển dụng click vào “Post a Job” thì hệ thống sẽ chuyển hướng sang trang /post-job và
-        hiển thị một form điền thông tin-->
-        <form class="p-4 p-md-5 border rounded" #jobForm="ngForm" >
+        <form class="p-4 p-md-5 border rounded" #jobForm="ngForm">
           <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
 
           <div class="form-group">
@@ -49,85 +48,80 @@
               Browse File<input type="file">
             </label>
           </div>
-            <!--11.1.5: Trước khi form được gửi đi thì sẽ được giao diện kiểm tra thông tin trước:-->
+
           <div class="form-group">
-            <label >Job Title</label>
-            <input type="text" class="form-control"  required #title="ngModel" [(ngModel)]="job.title" name="title" placeholder="Product Designer">
-            <!--11.2.1: trả về thông báo nhà tuyển dụng nhập thiếu thông tin.-->
-            <span class="text-danger" *ngIf="title.errors?.['required'] && title.touched" >This is required</span>
+            <label>Job Title</label>
+            <input type="text" class="form-control" required #title="ngModel" [(ngModel)]="job.title" name="title" placeholder="Product Designer">
+            <div><span class="text-danger" *ngIf="title.errors?.['required'] && title.touched">This is required</span></div>
           </div>
+
           <div class="form-group">
-            <label >Salary Range (USD)</label>
+            <label>Salary Range (USD)</label>
             <div class="d-flex gap-2">
-              <input type="number" class="form-control"  min="100" #minSalary="ngModel" [(ngModel)]="job.minSalary" name="minSalary" placeholder="Min (e.g., 100 USD)">
-              <input type="number" class="form-control"  max="1500" #maxSalary="ngModel"  [(ngModel)]="job.maxSalary" name="maxSalary" placeholder="Max (e.g., 1500 USD)">
+              <input type="number" class="form-control" min="100" #minSalary="ngModel" [(ngModel)]="job.minSalary" name="minSalary" placeholder="Min (e.g., 100 USD)">
+              <input type="number" class="form-control" max="1500" #maxSalary="ngModel" [(ngModel)]="job.maxSalary" name="maxSalary" placeholder="Max (e.g., 1500 USD)">
             </div>
-            <!--11.2.1: trả về thông báo nhà tuyển dụng nhập thiếu thông tin.-->
-            <span *ngIf="minSalary.errors?.['required'] && minSalary.touched" class="text-danger">This is required</span>
-            <span *ngIf="maxSalary.errors?.['required'] && maxSalary.touched" class="text-danger">This is required</span>
-            <!--11.3.1: trả về thông báo nhà tuyển dụng nhập thông tin không hợp lệ.-->
-            <span *ngIf="minSalary.errors?.['min'] && minSalary.touched">Min salary is 100 USD</span>
-            <span *ngIf="maxSalary.errors?.['max'] && maxSalary.touched">Max salary is 1500 USD</span>
-            <span *ngIf="!this.validSalary() && (minSalary.touched || maxSalary.touched)" class="text-danger">Min salary must less max salary</span>
+            <div><span *ngIf="minSalary.errors?.['required'] && minSalary.touched" class="text-danger">This is required</span></div>
+            <div><span *ngIf="maxSalary.errors?.['required'] && maxSalary.touched" class="text-danger">This is required</span></div>
+            <div><span *ngIf="minSalary.errors?.['min'] && minSalary.touched" class="text-danger">Min salary is 100 USD</span></div>
+            <div><span *ngIf="maxSalary.errors?.['max'] && maxSalary.touched" class="text-danger">Max salary is 1500 USD</span></div>
+            <div><span *ngIf="!this.validSalary() && (minSalary.touched || maxSalary.touched)" class="text-danger">Min salary must less max salary</span></div>
           </div>
 
           <div class="form-group">
             <label>Work Duration (days)</label>
             <div class="d-flex gap-2">
-              <input type="number" class="form-control"  #minDuration="ngModel" [(ngModel)]="job.minDuration" min="5" name="minDuration" required placeholder="Min (e.g., 5)">
-              <input type="number" class="form-control"  #maxDuration="ngModel" [(ngModel)]="job.maxDuration" max="30" name="maxDuration" required placeholder="Max (e.g., 30)">
+              <input type="number" class="form-control" #minDuration="ngModel" [(ngModel)]="job.minDuration" min="5" name="minDuration" required placeholder="Min (e.g., 5)">
+              <input type="number" class="form-control" #maxDuration="ngModel" [(ngModel)]="job.maxDuration" max="30" name="maxDuration" required placeholder="Max (e.g., 30)">
             </div>
-            <!--11.2.1: trả về thông báo nhà tuyển dụng nhập thiếu thông tin.-->
-            <span *ngIf="minDuration.errors?.['required'] && minDuration.touched" class="text-danger">This is required</span>
-            <span *ngIf="maxDuration.errors?.['required'] && maxDuration.touched" class="text-danger">This is required</span>
-            <!--11.3.1: trả về thông báo nhà tuyển dụng nhập thông tin không hợp lệ.-->
-            <span *ngIf="minDuration.errors?.['min'] && minDuration.touched">Min duration is 5 days</span>
-            <span *ngIf="maxDuration.errors?.['max'] && maxDuration.touched">Max duration is 30 days</span>
-            <span *ngIf="!this.validDuration() && (minDuration.touched || maxDuration.touched)" class="text-danger">Min duration must less max duration</span>
+            <div><span *ngIf="minDuration.errors?.['required'] && minDuration.touched" class="text-danger">This is required</span></div>
+            <div><span *ngIf="maxDuration.errors?.['required'] && maxDuration.touched" class="text-danger">This is required</span></div>
+            <div><span *ngIf="minDuration.errors?.['min'] && minDuration.touched" class="text-danger">Min duration is 5 days</span></div>
+            <div><span *ngIf="maxDuration.errors?.['max'] && maxDuration.touched" class="text-danger">Max duration is 30 days</span></div>
+            <div><span *ngIf="!this.validDuration() && (minDuration.touched || maxDuration.touched)" class="text-danger">Min duration must less max duration</span></div>
+          </div>
 
-          </div>
           <div class="form-group">
-            <label >Deadline apply</label>
-              <input type="date" class="form-control"  #deadline="ngModel" [(ngModel)]="job.deadlineCV" required name="deadlineCV" placeholder="The deadline apply CV to your project">
-              <!--11.2.1: trả về thông báo nhà tuyển dụng nhập thiếu thông tin.-->
-            <span *ngIf="deadline.errors?.['required'] && deadline.touched" class="text-danger">This is required</span>
-            <span *ngIf="!this.validDate() && deadline.touched" class="text-danger">The deadline cv must after now</span>
+            <label>Deadline apply</label>
+            <input type="date" class="form-control" #deadline="ngModel" [(ngModel)]="job.deadlineCV" required name="deadlineCV" placeholder="The deadline apply CV to your project">
+            <div><span *ngIf="deadline.errors?.['required'] && deadline.touched" class="text-danger">This is required</span></div>
+            <div><span *ngIf="!this.validDate() && deadline.touched" class="text-danger">The deadline cv must after now</span></div>
           </div>
+
           <div class="form-group">
-            <label >Job Description</label>
-            <textarea rows="10"  class="form-control" placeholder="Write Job Description!" required #description="ngModel" [(ngModel)]="job.description" name="description" ></textarea>
-            <!--11.2.1: trả về thông báo nhà tuyển dụng nhập thiếu thông tin.-->
-            <span *ngIf="description.errors?.['required'] && description.touched" class="text-danger">This is required</span>
+            <label>Job Description</label>
+            <textarea rows="10" class="form-control" placeholder="Write Job Description!" required #description="ngModel" [(ngModel)]="job.description" name="description"></textarea>
+            <div><span *ngIf="description.errors?.['required'] && description.touched" class="text-danger">This is required</span></div>
           </div>
+
           <div class="form-group">
-            <label >Job Requirements</label>
-            <textarea rows="10"  class="form-control" #requirement="ngModel" required [(ngModel)]="job.requirement" name="requirement" placeholder="Write Job requirements!" ></textarea>
-            <!--11.2.1: trả về thông báo nhà tuyển dụng nhập thiếu thông tin.-->
-            <span *ngIf="requirement.errors?.['required'] && requirement.touched" class="text-danger">This is required</span>
+            <label>Job Requirements</label>
+            <textarea rows="10" class="form-control" #requirement="ngModel" required [(ngModel)]="job.requirement" name="requirement" placeholder="Write Job requirements!"></textarea>
+            <div><span *ngIf="requirement.errors?.['required'] && requirement.touched" class="text-danger">This is required</span></div>
           </div>
+
           <div class="form-group">
             <label for="job-skill">Skill</label>
-            <textarea rows="10"  class="form-control" #skill="ngModel" required [(ngModel)]="job.skill" name="skill" placeholder="Write the needed skills!" id="job-skill" ></textarea>
-            <!--11.2.1: trả về thông báo nhà tuyển dụng nhập thiếu thông tin.-->
-            <span *ngIf="skill.errors?.['required'] && skill.touched" class="text-danger">This is required</span>
+            <textarea rows="10" class="form-control" #skill="ngModel" required [(ngModel)]="job.skill" name="skill" placeholder="Write the needed skills!" id="job-skill"></textarea>
+            <div><span *ngIf="skill.errors?.['required'] && skill.touched" class="text-danger">This is required</span></div>
           </div>
         </form>
       </div>
     </div>
-    <div class="row align-items-center mb-5">
 
+    <div class="row align-items-center mb-5">
       <div class="col-lg-4 ml-auto">
         <div class="row">
           <div class="col-6">
             <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
           </div>
           <div class="col-6">
-            <!--11.1.4: Nhà tuyển dụng nhấn nút “Save Job” trên form.-->
-            <button  class="btn btn-block btn-primary btn-md" (click)="doPostJob()" [disabled]="jobForm.invalid || !validSalary() || !validDuration() || !validDate()" >Save Job</button>
+            <button class="btn btn-block btn-primary btn-md" (click)="doPostJob()" [disabled]="jobForm.invalid || !validSalary() || !validDuration() || !validDate()">Save Job</button>
           </div>
         </div>
       </div>
-      <span [ngClass]="{'text-success': messageType === 'success', 'text-danger': messageType === 'error'}">{{message}}</span>
+      <div><span [ngClass]="{'text-success': messageType === 'success', 'text-danger': messageType === 'error'}">{{message}}</span></div>
     </div>
+
   </div>
 </section>

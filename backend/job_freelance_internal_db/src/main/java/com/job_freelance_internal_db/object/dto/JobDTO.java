@@ -52,10 +52,9 @@ public class JobDTO {
     @AssertTrue(message =  "min duration must less max duration")
     public boolean isValidMinDuration() {
         return minDuration <= maxDuration;
+    }
 
-
-    public JobDTO(String email, String title, double minSalary, double maxSalary, int minDuration, int maxDuration, LocalDate deadlineCV, String description, String requirement, String skill, byte[] file) {
-        this.email = email;
+    public JobDTO(String title, double minSalary, double maxSalary, int minDuration, int maxDuration, LocalDate deadlineCV, String description, String requirement, String skill, byte[] file) {
         this.title = title;
         this.minSalary = minSalary;
         this.maxSalary = maxSalary;
@@ -155,14 +154,6 @@ public class JobDTO {
 
     public void setSkill(String skill) {
         this.skill = skill;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public byte[] getFile() {
