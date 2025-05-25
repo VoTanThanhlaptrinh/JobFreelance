@@ -34,4 +34,7 @@ export class HeaderComponent implements AfterViewInit{
     window.location.reload()
     localStorage.removeItem('token');
   }
+  doListJob(){
+    window.location.replace("/list-Job")
+  }
 }

@@ -15,6 +15,7 @@ import {PostJobComponent} from './post-job/post-job.component';
 import {ServiceSingleComponent} from './service-single/service-single.component';
 import {ServicesComponent} from './services/services.component';
 import {TestimonialsComponent} from './testimonials/testimonials.component';
+import {ListJobComponent} from './list-job/list-job.component';
 
 export const routes: Routes = [
   // khai báo trang chủ
@@ -35,4 +36,5 @@ export const routes: Routes = [
   {path: 'service-single', component: ServiceSingleComponent},
   {path: 'services', component: ServicesComponent},
   {path: 'testimonials', component: TestimonialsComponent},
+  {path: 'list-Job', component: ListJobComponent},
 ];

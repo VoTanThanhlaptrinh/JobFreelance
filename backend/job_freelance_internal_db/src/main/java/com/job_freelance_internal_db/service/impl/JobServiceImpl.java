@@ -10,38 +10,67 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 // 11.1.12: Spring tự inject thực thể JobServiceImpl để thực thi phương thức.
 @Service
-@RequiredArgsConstructor
+
 public class JobServiceImpl implements JobService {
     private final JobRepository jobRepository;
     private final UserRepository userRepository;
+
+    public JobServiceImpl(JobRepository jobRepository, UserRepository userRepository) {
+        this.jobRepository = jobRepository;
+        this.userRepository = userRepository;
+    }
+
     @Value("${api.page.newest}")
     private long pageNewest;
     @Override
-    public Response<Object> getNDataJobNewest(long page) {
+    public Response getNDataJobNewest(long page) {
         PageRequest pageRequest = PageRequest.of((int) page, (int) pageNewest).withSort(Sort.Direction.DESC, "createDate");
-        return new Response<>(200,jobRepository.findAll(pageRequest),"success");
+        return new Response(200,jobRepository.findAll(pageRequest),"success");
     }
 
-    @Override
-    public Response<Object> getJobPostOfUser(long userId) {
-        Optional<User> user = userRepository.findById(userId);
-        return user.<Response<Object>>map(value -> new Response<>(200, value.getJobPost(), "success")).orElseGet(() -> new Response<>(400, List.of(), "User not found"));
+    public Response getJobPostOfUser(Principal principal, Pageable pageable) {
+        Optional<User> userOptional = userRepository.findUserByUsername(principal.getName());
+        if (userOptional.isEmpty()) {
+            return new Response(404, null, "Không tìm thấy người dùng.");
+        }
+
+        User user = userOptional.get();
+        Page<Job> jobPage = jobRepository.findByCreator(user, pageable);
+
+        if (jobPage.isEmpty()) {
+            return new Response(200, null, "Người dùng hiện chưa đăng công việc nào.");
+        }
+
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("jobs", jobPage.getContent());
+        responseData.put("totalPages", jobPage.getTotalPages());
+        responseData.put("totalElements", jobPage.getTotalElements());
+        responseData.put("currentPage", jobPage.getNumber());
+
+        return new Response(200, responseData, "Lấy danh sách công việc thành công.");
     }
 
+
+
     @Override
-    public Response<Object> getJobApplyOfUser(long userId) {
+    public Response getJobApplyOfUser(long userId) {
         Optional<User> user = userRepository.findById(userId);
-        return user.<Response<Object>>map(value -> new Response<>(200, value.getJobApplies(), "success")).orElseGet(() -> new Response<>(400, List.of(), "User not found"));
+        return user.<Response>map(value -> new Response(200, value.getJobApplies(), "success")).orElseGet(() -> new Response(400, List.of(), "User not found"));
 
     }
 

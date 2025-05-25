@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Data
+
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
@@ -54,11 +54,9 @@ public class User implements UserDetails {
     private List<Token> tokens;
 
     @OneToMany(mappedBy = "creator")
-    @JsonIgnore
     private List<Job> jobPost;
 
     @OneToMany(mappedBy = "applies")
-    @JsonIgnore
     private List<Job> jobApplies;
 
     @OneToMany(mappedBy = "user_cv")
@@ -108,5 +106,101 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
+
+    public void setAccountLocked(boolean accountLocked) {
+        this.accountLocked = accountLocked;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+
+
+    public void setTokens(List<Token> tokens) {
+        this.tokens = tokens;
+    }
+
+
+
+    public void setJobPost(List<Job> jobPost) {
+        this.jobPost = jobPost;
+    }
+
+
+
+    public void setJobApplies(List<Job> jobApplies) {
+        this.jobApplies = jobApplies;
+    }
+
+
+    public void setCvs(List<CV> cvs) {
+        this.cvs = cvs;
+    }
+
+
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+
+
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public List<Job> getJobApplies() {
+        return jobApplies;
+    }
+
+    public List<Job> getJobPost() {
+        return jobPost;
     }
 }
