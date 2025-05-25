@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 export class JobServiceService {
 
   constructor(private http:HttpClient) { }
-
+  /* 11.1.7: jobService gọi phương thức doPostJob(form), thực hiện HTTP POST đến http://localhost:8080/api/job/postJob với body là form */
   doPostJob(form:any): Observable<any>{
     return this.http.post('http://localhost:8080/api/job/postJob',form);
   }

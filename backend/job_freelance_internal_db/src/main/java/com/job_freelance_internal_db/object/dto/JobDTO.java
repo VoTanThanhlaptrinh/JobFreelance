@@ -1,6 +1,7 @@
 package com.job_freelance_internal_db.object.dto;
 
 import com.job_freelance_internal_db.object.Job;
+import com.job_freelance_internal_db.object.User;
 import jakarta.persistence.Lob;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Max;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
@@ -19,8 +21,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JobDTO {
-    @NotNull(message = "email is null")
-    private String email;
     @NotNull(message = "title is null")
     private String title;
     @NotNull(message = "minSalary is null") @Min(value = 100, message = "Min salary min is 100 USD")
@@ -44,7 +44,15 @@ public class JobDTO {
 
     @AssertTrue
     public boolean isValidDeadline() {
-        return LocalDate.now().isAfter(deadlineCV);
+        return LocalDate.now().isBefore(deadlineCV);
+    }
+    @AssertTrue(message = "min salary must less max salary")
+    public boolean isValidMinSalary() {
+        return minSalary <= maxSalary;
+    }
+    @AssertTrue(message =  "min duration must less max duration")
+    public boolean isValidMinDuration() {
+        return minDuration <= maxDuration;
     }
     public Job toJob() {
         Job job = new Job();
@@ -54,6 +62,7 @@ public class JobDTO {
         job.setDeadlineCV(deadlineCV);
         job.setRequirement(requirement);
         job.setSkill(skill);
+        job.setCreator((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         job.setRangeDuration(String.format("%d - %d days", minDuration, maxDuration));
         job.setRangeSalary(String.format("%.1f - %.1f USD", minSalary, maxSalary));
         return job;
